@@ -81,3 +81,107 @@ SELECT * from second;
 | Prakhar | 2000-02-01 | Male   |
 +---------+------------+--------+
 
+INSERT INTO second (Name, DoB, Gender) VALUES("Prakhar", DEFAULT, "MALEEE");
+ERROR 1265 (01000): Data truncated for column 'Gender' at row 1
+
+
+INSERT INTO second (Name, DoB, Gender) VALUES("Sugam", DEFAULT, "MALE"),("Kashif", "1998-09-12", "MALE"),("Sneha", "1998-09-12", "FEMALE"),("Rashmi", "1998-10-12", "FEMALE");
+
+SELECT * from second;
++---------+------------+--------+
+| Name    | DoB        | Gender |
++---------+------------+--------+
+| Prakhar | 2000-02-01 | Male   |
+| Prakhar | 2000-02-01 | Male   |
+| Sugam   | 2000-02-01 | Male   |
+| Kashif  | 1998-09-12 | Male   |
+| Sneha   | 1998-09-12 | Female |
+| Rashmi  | 1998-10-12 | Female |
++---------+------------+--------+
+
+SELECT DoB from second WHERE Gender = "Male";
++------------+
+| DoB        |
++------------+
+| 2000-02-01 |
+| 2000-02-01 |
+| 2000-02-01 |
+| 1998-09-12 |
++------------+
+4 rows in set (0.00 sec)
+
+SELECT Name,DoB from second WHERE Gender = "Male";
++---------+------------+
+| Name    | DoB        |
++---------+------------+
+| Prakhar | 2000-02-01 |
+| Prakhar | 2000-02-01 |
+| Sugam   | 2000-02-01 |
+| Kashif  | 1998-09-12 |
++---------+------------+
+4 rows in set (0.00 sec)
+
+SELECT * from second WHERE Name LIKE "%r%";// contains "r"
++---------+------------+--------+
+| Name    | DoB        | Gender |
++---------+------------+--------+
+| Prakhar | 2000-02-01 | Male   |
+| Prakhar | 2000-02-01 | Male   |
+| Rashmi  | 1998-10-12 | Female |
++---------+------------+--------+
+3 rows in set (0.00 sec)
+
+% -> means any number of character/s
+_ -> means single character
+
+SELECT * from second WHERE Name LIKE "_ashmi";
++--------+------------+--------+
+| Name   | DoB        | Gender |
++--------+------------+--------+
+| Rashmi | 1998-10-12 | Female |
++--------+------------+--------+
+
+SELECT * FROM second ORDER BY Name;
+
++---------+------------+--------+
+| Name    | DoB        | Gender |
++---------+------------+--------+
+| Kashif  | 1998-09-12 | Male   |
+| Prakhar | 2000-02-01 | Male   |
+| Prakhar | 2000-02-01 | Male   |
+| Rashmi  | 1998-10-12 | Female |
+| Sneha   | 1998-09-12 | Female |
+| Sugam   | 2000-02-01 | Male   |
++---------+------------+--------+
+
+SELECT * FROM second ORDER BY Name DESC;
++---------+------------+--------+
+| Name    | DoB        | Gender |
++---------+------------+--------+
+| Sugam   | 2000-02-01 | Male   |
+| Sneha   | 1998-09-12 | Female |
+| Rashmi  | 1998-10-12 | Female |
+| Prakhar | 2000-02-01 | Male   |
+| Prakhar | 2000-02-01 | Male   |
+| Kashif  | 1998-09-12 | Male   |
++---------+------------+--------+
+To find the 2 youngest person.
+
+SELECT Name FROM second ORDER BY DOB LIMIT 2;
+
++--------+
+| Name   |
++--------+
+| Kashif |
+| Sneha  |
++--------+
+
+To find the 2 youngest girl.
+
+SELECT Name FROM second WHERE GENDER = 'Female' ORDER BY DOB LIMIT 2;
++--------+
+| Name   |
++--------+
+| Sneha  |
+| Rashmi |
++--------+
