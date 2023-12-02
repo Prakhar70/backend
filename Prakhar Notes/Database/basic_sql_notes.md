@@ -428,5 +428,9 @@ HAVING COUNT(CustomerID) > 5;
 
 SELECT Region FROM Actors GROUP BY Region HAVING COUNT(*) > 1;
 
+-- Delete all data from the "Departments" table
+DELETE FROM Departments;
 
-//Lecture 3
+-- Delete the entire "Departments" table including the schema
+DROP TABLE Departments;
+
