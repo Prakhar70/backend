@@ -1,0 +1,32 @@
+let obj={};
+console.log(10 - obj);//NaN
+
+let obj1={
+    x:9,
+    y:8
+};
+console.log(100 - obj1);//NaN
+
+let obj2={
+    x:7,
+    valueOf(){
+        return 99;
+    }
+}
+console.log(100 - obj2);//1
+
+let obj3={
+    x:8,
+    toString(){
+        return "88"
+    }
+}
+console.log(90-obj3);//2
+
+let obj4={
+    x:7,
+    toString(){
+        return {};
+    }
+}
+console.log(100-obj4);//TypeError

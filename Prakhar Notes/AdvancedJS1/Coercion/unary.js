@@ -1,3 +1,13 @@
-// just call ToNumber(argument)
-let a=+10;
-console.log(a);
+let obj={
+    toString(){
+        return "Prakhar"
+    }
+}
+console.log(+obj);
+
+let obj1={
+    toString(){
+        return "100"
+    }
+}
+console.log(+obj1 + 1);
